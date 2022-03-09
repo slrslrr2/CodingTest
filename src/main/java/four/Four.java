@@ -53,4 +53,28 @@ public class Four {
         Arrays.sort(chars);
         return new String(chars);
     }
+
+    ///////////////////////////////////////////////
+    // 강좌 solution
+    static void solution2(String str, String str2){
+        Map<Character, Integer> map = new HashMap<>();
+        Map<Character, Integer> map2 = new HashMap<>();
+        int result = 0;
+
+        for(char x : str2.toCharArray()) map2.put(x, map2.getOrDefault(x, 0)+1);
+        for(int i=0; i<str2.length()-1; i++) map.put(str.charAt(i), map.getOrDefault(str.charAt(i), 0)+1);
+
+        for(int j=str2.length()-1; j<str.length(); j++){
+            map.put(str.charAt(j), map.getOrDefault(str.charAt(j), 0)+1);
+            if(map.equals(map2)) result++;
+
+            int removeIndex = j-(str2.length())+1;
+            Character removeKey = str.charAt(removeIndex);
+            int removeValue = map.get(removeKey);
+
+            if(removeValue == 1) map.remove(removeKey);
+            else map.put(removeKey, removeValue-1);
+        }
+        System.out.println(result);
+    }
 }
