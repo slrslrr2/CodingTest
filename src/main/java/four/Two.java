@@ -53,6 +53,6 @@ public class Two {
     static String stringSort(String str){
         char[] chars = str.toCharArray();
         Arrays.sort(chars);
-        return Arrays.toString(chars);
+        return new String(chars);
     }
 }
