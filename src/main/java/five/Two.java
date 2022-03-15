@@ -1,6 +1,8 @@
 package five;
 
 import java.util.Scanner;
+import java.util.Stack;
+
 /**
 2. 괄호문자제거
     설명
@@ -41,6 +43,24 @@ public class Two {
                 answer += String.valueOf(chars[i]);
             }
         }
+        System.out.println(answer);
+    }
+
+    private static void solution2(String str){
+        Stack<Character> stack = new Stack<>();
+        String answer = "";
+        for (char x : str.toCharArray()) {
+            if(x == ')'){
+                while (stack.pop() != '(');
+            } else {
+                stack.push(x);
+            }
+        }
+
+        for(int i=0; i<stack.size(); i++){
+            answer += stack.get(i);
+        }
+
         System.out.println(answer);
     }
 }
